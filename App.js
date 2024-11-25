@@ -1,81 +1,100 @@
-// Asegurar que el DOM esté completamente cargado antes de ejecutar cualquier código
 document.addEventListener("DOMContentLoaded", () => {
-    // Simulación de productos
-    const categorias = {
-      Alimentos: [
-        { id: 1, nombre: "Producto A", precio: 100, stock: 10 },
-        { id: 2, nombre: "Producto B", precio: 200, stock: 5 },
-      ],
-    }
-      
-    
-  
-    // Estado del carrito almacenado en LocalStorage
-    let carrito = localStorage.getItem("carrito") 
-      ? JSON.parse(localStorage.getItem("carrito")) 
-      : [];
-  
-    // Función para renderizar productos
-    function renderizarProductos() {
-      const contenedor = document.getElementById("productos");
-      contenedor.innerHTML = ""; // Limpiar contenido previo
-  
-      productos.forEach((producto) => {
-        const div = document.createElement("div");
-        div.className = "producto";
-        div.innerHTML = `
-          <h3>${producto.nombre}</h3>
-          <p>Precio: $${producto.precio}</p>
-          <p>Stock: ${producto.stock}</p>
-        `;
-        const boton = document.createElement("button");
-        boton.textContent = "Añadir al Carrito";
-        boton.addEventListener("click", () => agregarAlCarrito(producto.id));
-        div.appendChild(boton);
-        contenedor.appendChild(div);
-      });
-    }
-  
-    // Función para agregar productos al carrito
-    function agregarAlCarrito(idProducto) {
-      const producto = productos.find((p) => p.id === idProducto);
-  
-      if (producto && producto.stock > 0) {
-        const itemEnCarrito = carrito.find((item) => item.id === idProducto);
-  
-        if (itemEnCarrito) {
-          itemEnCarrito.cantidad++;
+  const usuarios = [
+    { id: 1, correo: "juan@example.com", contraseña: "1234", nombre: "Juan", rol: "comprador" },
+    { id: 2, correo: "ana@example.com", contraseña: "5678", nombre: "Ana", rol: "vendedor" }
+  ];
+  let productos = [
+    { id: 1, nombre: "Producto A", precio: 100, stock: 10 },
+    { id: 2, nombre: "Producto B", precio: 200, stock: 5 },
+    { id: 3, nombre: "Producto C", precio: 300, stock: 8 }
+  ];
+  let carrito = localStorage.getItem("carrito") ? JSON.parse(localStorage.getItem("carrito")) : [];
+  let usuarioLogueado = null;
+
+  const modal = document.getElementById("modal-auth");
+  const loginForm = document.getElementById("login-form");
+  const registerForm = document.getElementById("register-form");
+
+  // Función para abrir/cerrar el modal
+  function toggleModal() {
+    modal.classList.toggle("hidden");
+  }
+
+  // Función para renderizar productos
+  function renderizarProductos() {
+    const contenedor = document.getElementById("productos");
+    contenedor.innerHTML = "";
+    productos.forEach((producto) => {
+      const div = document.createElement("div");
+      div.className = "producto";
+      div.innerHTML = `
+        <h3>${producto.nombre}</h3>
+        <p>Precio: $${producto.precio}</p>
+        <p>Stock: ${producto.stock}</p>
+      `;
+      const boton = document.createElement("button");
+      boton.textContent = usuarioLogueado ? "Añadir al Carrito" : "Inicia Sesión para Añadir";
+      boton.addEventListener("click", () => {
+        if (usuarioLogueado) {
+          agregarAlCarrito(producto.id);
         } else {
-          carrito.push({ id: producto.id, nombre: producto.nombre, precio: producto.precio, cantidad: 1 });
+          toggleModal();
         }
-  
-        producto.stock--; // Reducir stock del producto
-        guardarCarrito();
-        renderizarProductos(); // Actualizar la vista
-        alert("Producto añadido al carrito");
-      } else {
-        alert("Producto agotado");
-      }
+      });
+      div.appendChild(boton);
+      contenedor.appendChild(div);
+    });
+  }
+
+  // Función para manejar el login
+  function loginUsuario() {
+    const correo = document.getElementById("email").value;
+    const contraseña = document.getElementById("password").value;
+    const usuario = usuarios.find((u) => u.correo === correo && u.contraseña === contraseña);
+
+    if (usuario) {
+      usuarioLogueado = usuario;
+      toggleModal();
+      renderizarProductos();
+      alert("¡Bienvenido, " + usuario.nombre + "!");
+    } else {
+      alert("Correo o contraseña incorrectos.");
     }
-  
-    // Función para guardar el carrito en LocalStorage
-    function guardarCarrito() {
-      localStorage.setItem("carrito", JSON.stringify(carrito));
+  }
+
+  // Función para manejar el registro
+  function registrarUsuario() {
+    const nombre = document.getElementById("nombre").value;
+    const apellido = document.getElementById("apellido").value;
+    const correo = document.getElementById("email-register").value;
+    const contraseña = document.getElementById("password-register").value;
+
+    if (usuarios.find((u) => u.correo === correo)) {
+      alert("Este correo ya está registrado.");
+    } else {
+      const nuevoUsuario = { id: usuarios.length + 1, correo, contraseña, nombre: `${nombre} ${apellido}`, rol: "comprador" };
+      usuarios.push(nuevoUsuario);
+      alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
+      toggleModal();
     }
-  
-    // Función para mostrar el carrito
-    function mostrarCarrito() {
-      const resumen = carrito.map(
-        (item) => `${item.nombre} - Cantidad: ${item.cantidad} - Total: $${item.cantidad * item.precio}`
-      ).join("\n");
-  
-      alert(resumen || "El carrito está vacío");
-    }
-  
-    // Enlazar eventos
-    document.getElementById("btn-carrito").addEventListener("click", mostrarCarrito);
-  
-    // Inicializar los productos al cargar la página
-    renderizarProductos();
+  }
+
+  // Eventos para alternar entre login y registro
+  document.getElementById("btn-toggle-register").addEventListener("click", () => {
+    loginForm.classList.add("hidden");
+    registerForm.classList.remove("hidden");
   });
-  
+
+  document.getElementById("btn-toggle-login").addEventListener("click", () => {
+    registerForm.classList.add("hidden");
+    loginForm.classList.remove("hidden");
+  });
+
+  // Enlazar eventos del modal
+  document.getElementById("btn-login-auth").addEventListener("click", loginUsuario);
+  document.getElementById("btn-register-auth").addEventListener("click", registrarUsuario);
+  document.getElementById("btn-close-modal").addEventListener("click", toggleModal);
+
+  // Inicializar productos
+  renderizarProductos();
+});

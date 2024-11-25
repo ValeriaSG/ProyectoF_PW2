@@ -3,49 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Plataforma de Compraventa</title>
-  <link rel="stylesheet" href="Style.css">
-  <title>Pantalla de Inicio</title>
-  <link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Bienvenido a la Plataforma de Compraventa</h1>
-  </header>
-  <main>
-    <section id="inicio-sesion">
+    <h1>Plataforma de Compraventa</h1>
+    <nav>
       <button id="btn-login">Iniciar Sesión</button>
+      <button id="btn-carrito">Carrito</button>
+    </nav>
+  </header>
+
+  <main id="app">
+    <section id="productos">
+      <!-- Aquí se mostrarán los productos -->
     </section>
   </main>
+
   <footer>
     <p>&copy; 2024 - Plataforma de Compraventa </p>
   </footer>
 
-  <div id="modo-sesion" class="modo hidden">
-    <div class="modo-container">
-      <h2 id ="modo-sesion-titulo">Iniciar sesión</h2>
-
-    <div id ="init-formulario">
-      <input type ="email" id ="ingresar-email" placeholder="Correo electrónico" required>
-      <input type="contraseña" id="ingresar-contraseña" placeholder="Contraseña" required>
-
-      <button id="btn-sesion">Ingresar</button>
-      <p>¿No tienes cuenta? <span id="registro" class="link">Registrate aquí</span></p>
+  <!-- Modal de Inicio de Sesión/Registro -->
+  <div id="modal-auth" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modal-title">Iniciar Sesión</h2>
+      <div id="login-form">
+        <input type="email" id="email" placeholder="Correo Electrónico" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button id="btn-login-auth">Ingresar</button>
+        <p>¿No tienes cuenta? <span id="btn-toggle-register" class="link">Regístrate aquí</span></p>
+      </div>
+      <div id="register-form" class="hidden">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="apellido" placeholder="Apellido" required>
+        <input type="email" id="email-register" placeholder="Correo Electrónico" required>
+        <input type="password" id="password-register" placeholder="Contraseña" required>
+        <button id="btn-register-auth">Crear Cuenta</button>
+        <p>¿Ya tienes cuenta? <span id="btn-toggle-login" class="link">Inicia sesión aquí</span></p>
+      </div>
+      <button id="btn-close-modal" class="close">Cerrar</button>
     </div>
-
-    <div id="registro-section" class="hidden">
-      <input type="text" id="registro-primernombre" placeholder="Nombre" required>
-      <input type="text" id="registro-apellido" placeholder="Apellido" required>
-      <input type="email" id="registro-email" placeholder="Correo Electrónico" required>
-      <input type="contraseña" id="registro-contraseña" placeholder="Contraseña" required>
-      <button id="btn-crear">Crear Cuenta</button>
-      <p>¿Ya tienes cuenta? <span id="login" class="link">Inicia sesión aquí</span></p>
-    </div>
-    <button id="close-modo" class="close-button">Cerrar</button>
   </div>
-</div>
 
   <!-- Archivo JavaScript -->
   <script src="app.js"></script>
