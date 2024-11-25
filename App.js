@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleModal() {
     modal.classList.toggle("hidden");
   }
+  // Asignar la misma funcionalidad al botón de "Iniciar Sesión" del header
+  const btnLoginHeader = document.getElementById("btn-login");
+  btnLoginHeader.addEventListener("click", toggleModal);
 
   // Función para renderizar productos
   function renderizarProductos() {
