@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plataforma de Compraventa</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="Style.css">
 </head>
 <body>
   <header>
@@ -22,8 +22,21 @@
   </main>
 
   <footer>
-    <p>&copy; 2024 - Plataforma de Compraventa --- ya pude vincular git</p>
+    <p>&copy; 2024 - Plataforma de Compraventa </p>
   </footer>
+
+  <div id="modo-sesion" class="modo hidden">
+    <div class="modo-container">
+      <h2 id ="modo-sesion-titulo">Iniciar sesión</h2>
+
+    <div id ="init-formulario">
+      <input type ="email" id ="ingresar-email" placeholder="Correo electrónico" required>
+      <input type="contraseña" id="ingresar-contraseña" placeholder="Contraseña" required>
+
+      <button id="btn-sesion">Ingresar</button>
+      <p>¿No tienes cuenta? <span id="btn-registro" class="link">Registrate aquí</span></p>
+    </div>
+
 
   <!-- Archivo JavaScript -->
   <script src="app.js"></script>
