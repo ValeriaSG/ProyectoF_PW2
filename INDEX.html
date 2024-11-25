@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plataforma de Compraventa</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Pantalla de Inicio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Plataforma de Compraventa</h1>
-    <nav>
-      <button id="btn-login">Iniciar Sesión</button>
-      <button id="btn-carrito">Carrito</button>
-    </nav>
+    <h1>Bienvenido a la Plataforma de Compraventa</h1>
   </header>
-
-  <main id="app">
-    <section id="productos">
-      <!-- Aquí se mostrarán los productos -->
+  <main>
+    <section id="inicio-sesion">
+      <button id="btn-login">Iniciar Sesión</button>
     </section>
   </main>
-
   <footer>
-    <p>&copy; 2024 - Plataforma de Compraventa --- ya pude vincular git</p>
+    <p>&copy; 2024 - Plataforma de Compraventa</p>
   </footer>
 
-  <!-- Archivo JavaScript -->
-  <script src="app.js"></script>
+  <script>
+    // Redirigir a la pantalla de artículos al hacer clic en el botón
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("btn-login").addEventListener("click", () => {
+        window.location.href = "productos.html"; // Redirige a productos.html
+      });
+    });
+  </script>
 </body>
 </html>

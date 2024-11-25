@@ -1,11 +1,14 @@
 // Asegurar que el DOM esté completamente cargado antes de ejecutar cualquier código
 document.addEventListener("DOMContentLoaded", () => {
     // Simulación de productos
-    const productos = [
-      { id: 1, nombre: "Producto A", precio: 100, stock: 10 },
-      { id: 2, nombre: "Producto B", precio: 200, stock: 5 },
-      { id: 3, nombre: "Producto C", precio: 300, stock: 8 },
-    ];
+    const categorias = {
+      Alimentos: [
+        { id: 1, nombre: "Producto A", precio: 100, stock: 10 },
+        { id: 2, nombre: "Producto B", precio: 200, stock: 5 },
+      ],
+    }
+      
+    
   
     // Estado del carrito almacenado en LocalStorage
     let carrito = localStorage.getItem("carrito") 
