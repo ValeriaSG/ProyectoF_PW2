@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
+
   <title>Plataforma de Compraventa</title>
   <link rel="stylesheet" href="Style.css">
-=======
   <title>Pantalla de Inicio</title>
   <link rel="stylesheet" href="style.css">
->>>>>>> 150e75849e4ba95a7cd45ac21ebcd614bba5752d
+
 </head>
 <body>
   <header>
@@ -21,7 +20,6 @@
     </section>
   </main>
   <footer>
-<<<<<<< HEAD
     <p>&copy; 2024 - Plataforma de Compraventa </p>
   </footer>
 
@@ -34,24 +32,22 @@
       <input type="contraseña" id="ingresar-contraseña" placeholder="Contraseña" required>
 
       <button id="btn-sesion">Ingresar</button>
-      <p>¿No tienes cuenta? <span id="btn-registro" class="link">Registrate aquí</span></p>
+      <p>¿No tienes cuenta? <span id="registro" class="link">Registrate aquí</span></p>
     </div>
 
+    <div id="registro-section" class="hidden">
+      <input type="text" id="registro-primernombre" placeholder="Nombre" required>
+      <input type="text" id="registro-apellido" placeholder="Apellido" required>
+      <input type="email" id="registro-email" placeholder="Correo Electrónico" required>
+      <input type="contraseña" id="registro-contraseña" placeholder="Contraseña" required>
+      <button id="btn-crear">Crear Cuenta</button>
+      <p>¿Ya tienes cuenta? <span id="login" class="link">Inicia sesión aquí</span></p>
+    </div>
+    <button id="close-modo" class="close-button">Cerrar</button>
+  </div>
+</div>
 
   <!-- Archivo JavaScript -->
   <script src="app.js"></script>
-=======
-    <p>&copy; 2024 - Plataforma de Compraventa</p>
-  </footer>
-
-  <script>
-    // Redirigir a la pantalla de artículos al hacer clic en el botón
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("btn-login").addEventListener("click", () => {
-        window.location.href = "productos.html"; // Redirige a productos.html
-      });
-    });
-  </script>
->>>>>>> 150e75849e4ba95a7cd45ac21ebcd614bba5752d
 </body>
 </html>
